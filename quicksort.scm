@@ -1,14 +1,12 @@
 (define (quicksort array)
-  (cond 
-    ((null? array) array)
-    (else 
-      (let ((pivot (car array))) 
-        (let 
-          ((lower 
-             (quicksort (filter (lambda(x) (<  x pivot)) (cdr array))))
-           (higher
-             (quicksort (filter (lambda(x) (>= x pivot)) (cdr array)))))
-            (append lower (list pivot) higher))))))
+  (if (null? array) array
+    (let ((pivot (car array))) 
+      (let 
+        ((lower 
+           (quicksort (filter (lambda(x) (<  x pivot)) (cdr array))))
+         (higher
+           (quicksort (filter (lambda(x) (>= x pivot)) (cdr array)))))
+          (append lower (list pivot) higher)))))
 
 (define int-array 
   (call-with-input-file "IntArray.txt"
